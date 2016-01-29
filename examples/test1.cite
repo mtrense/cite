@@ -1,0 +1,5 @@
+{{ x = 5 }}
+Hello {{= name }}!
+  This is a {{= paragraph_name }} with indentation: {{= paragraph }}
+
+And a second paragraph wit' an apostrophe. And an x = {{= x }}
