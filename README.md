@@ -1,8 +1,6 @@
 # Cite
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cite`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Cite is a template engine that respects newlines and indentation even in nested templates.
 
 ## Installation
 
@@ -20,9 +18,32 @@ Or install it yourself as:
 
     $ gem install cite
 
-## Usage
+## Getting Started
 
-TODO: Write usage instructions here
+Compiling a template:
+```
+Cite::Template(source, options = {})
+```
+
+Options may include
+* `:stream_name`
+* `:correct_indentation`
+
+Rendering a compiled template:
+```
+render([object = Object.new], [local_variables = {}])
+```
+where `object` is self in the context of the rendered template and `local_variables` may be a hash with keys made available as local variables within the template. Both arguments are optional
+
+
+### Templates
+
+* Cite can access local and instance variables on self as well as methods on self:
+```
+A local variable: {{= name }}
+An instance-variable: {{= @name }}
+A method call: {{= concat(name, @name) }}
+```
 
 ## Development
 
