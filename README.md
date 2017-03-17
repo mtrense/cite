@@ -20,9 +20,13 @@ Or install it yourself as:
 
 ## Getting Started
 
-Compiling a template:
+Compiling a template from a file:
+```ruby
+Cite.file(filename, options = {})
 ```
-Cite::Template(source, options = {})
+or compile a template from a string:
+```ruby
+Cite.inline(template_string, options = {})
 ```
 
 Options may include
@@ -30,7 +34,7 @@ Options may include
 * `:correct_indentation`
 
 Rendering a compiled template:
-```
+```ruby
 render([object = Object.new], [local_variables = {}])
 ```
 where `object` is self in the context of the rendered template and `local_variables` may be a hash with keys made available as local variables within the template. Both arguments are optional
@@ -39,7 +43,7 @@ where `object` is self in the context of the rendered template and `local_variab
 ### Templates
 
 * Cite can access local and instance variables on self as well as methods on self:
-```
+```ruby
 A local variable: {{= name }}
 An instance-variable: {{= @name }}
 A method call: {{= concat(name, @name) }}
