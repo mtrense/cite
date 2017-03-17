@@ -1,1 +1,1 @@
-{{= Cite::Template(File.expand_path('../empty1.cite', __FILE__)).render }}
+{{= Cite.file(File.expand_path('../empty1.cite', __FILE__)).render }}
