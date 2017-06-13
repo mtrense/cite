@@ -14,6 +14,7 @@
 # limitations under the License.
 
 require 'pathname'
+require 'thread'
 
 module Cite
   
@@ -81,7 +82,7 @@ module Cite
       begin
         locals = Hash === args.last ? args.pop : {}
         object = args.first || Object.new
-        (Thread[:cite_templates] ||= []) << [self, object, locals]
+        (Thread.current[:cite_templates] ||= []) << [self, object, locals]
         p = eval <<-EOF, binding, @source.to_s, -1
           proc do |#{locals.keys.join(', ')}|
             #{assembled_template}
@@ -89,7 +90,7 @@ module Cite
         EOF
         object.instance_exec *locals.values, &p
       ensure
-        Thread[:cite_templates].pop
+        Thread.current[:cite_templates].pop
       end
     end
     
