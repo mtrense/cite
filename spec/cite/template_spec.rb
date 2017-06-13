@@ -16,21 +16,21 @@
 describe Cite::Template do
   
   context 'empty template' do
-    subject { Cite::Template(File.expand_path('../template/empty.cite', __FILE__)) }
+    subject { Cite.file(File.expand_path('../template/empty.cite', __FILE__)) }
     
     it { expect(subject.render).to be }
     it { expect(subject.render).to be_empty }
   end
   
   context 'simple template' do
-    subject { Cite::Template(File.expand_path('../template/simple.cite', __FILE__)) }
+    subject { Cite.file(File.expand_path('../template/simple.cite', __FILE__)) }
     
     it { expect(subject.render(name: 'Fred')).to be }
     it { expect(subject.render(name: 'Fred')).to eq("Hello Fred!") }
   end
   
   context 'simple template with instance' do
-    subject { Cite::Template(File.expand_path('../template/instance.cite', __FILE__)) }
+    subject { Cite.file(File.expand_path('../template/instance.cite', __FILE__)) }
     let(:obj) { Class.new { def up(str) str.upcase end ; def initialize() @name = 'Barney' end }.new }
     
     it { expect(subject.render(obj, name: 'Barney')).to be }
